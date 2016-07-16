@@ -28,6 +28,7 @@
             <img id="profile-img" src="assets/profile.jpg">
             <a-asset-item id="iron-man" src="assets/iron-man.dae"></a-asset-item>
             <a-asset-item id="man" src="assets/man.dae"></a-asset-item>
+            <img id="shadow" src="assets/radial-shadow-2.png">
         </a-assets>
 
         <!-- <a-entity template="src: #enemies" data-num="10"></a-entity> -->
@@ -80,7 +81,7 @@
         <a-entity id="model" position="0 0 -2">
             <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000" easing="linear" repeat="infinite"></a-animation>
             <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5" src="#man"></a-collada-model>
-            <a-image src="#shadow2" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+            <a-image src="#shadow" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
         </a-entity>
 
         <a-entity rotation="0 40 0" data-element="h3" data-text="Jake Dexheimer" template="src: js/templates/type/type.template; type: handlebars" position="-3 2.1 -1"></a-entity>
