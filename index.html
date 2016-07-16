@@ -1,159 +1,170 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Hello, World! • A-Frame</title>
-  <meta name="description" content="Hello, World! • A-Frame">
-  <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
-  <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    <script src="https://rawgit.com/IdeaSpaceVR/aframe-ui-modal-component/master/dist/aframe-ui-modal-component.min.js"></script>
 </head>
+
 <body>
-  <a-scene>
-    <a-sky color="#ECECEC"></a-sky>
-    <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
-    <a-light type="ambient" color="#fff"></a-light>
-    <!--  NAV LINKS -->
-    <a-plane id="home" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-5 0 0.1">
-      <a-entity bmfont-text="text: Home" position="0 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+    <a-scene>
+        <a-assets>
+            <script id="enemies" type="text/x-nunjucks-template">
+                <a-entity layout="type: circle; radius: 5" position="0 0.5 0">
+                    <a-animation attribute="rotation" dur="30000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 
-    <a-plane id="profile" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-3.34 0 0.1">
-      <a-entity bmfont-text="text: Profile" position="-0.2 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+                    {% for x in range(num) %}
+                    <a-sphere look-at="#player" radius=".125" color="#EF2D5E"></a-sphere>
+                    {% endfor %}
+                </a-entity>
+            </script>
+            <img id="profile-img" src="assets/profile.jpg">
+            <a-asset-item id="iron-man" src="assets/iron-man.dae"></a-asset-item>
+            <a-asset-item id="man" src="assets/man.dae"></a-asset-item>
+            <img id="shadow" src="assets/radial-shadow-2.png">
+        </a-assets>
 
-    <a-plane id="myNetwork" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-1.68 0 0.1">
-      <a-entity bmfont-text="text: My Network" position="-0.4 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+        <!-- <a-entity template="src: #enemies" data-num="10"></a-entity> -->
+        <!-- <a-entity  id="model" position="0 0 0">
+        <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000"
+                     easing="linear" repeat="infinite"></a-animation>
+        <a-collada-model position="-.35 1 .55" rotation="0 -20 0" scale="0.8 0.8 0.8"
+                         src="#iron-man"></a-collada-model>
+      </a-entity>
+      <a-plane rotation="0 0 0" width="12" height="4" color="#ccc" position="0 0 0">
+        <a-curvedimage src="#profile-img" radius="5.7" theta-length="9" height="1" position="-1.5 0 0">
+          <a-animation attribute="position" from="-100 0 0" to="-1.5 0 0" begin="500" dur="1000"></a-animation>
+        </a-curvedimage>
+        <a-entity>
+          <a-entity data-element="h2" data-text="Jake Dexheimer" template="src: js/templates/type/type.template; type: handlebars" position="0 1 .5"></a-entity>
+          <a-entity data-element="h4" data-text="Software Engineer Intern at Intuit" template="src: js/templates/type/type.template; type: handlebars" position="0 .5 0.5"></a-entity>
+          <a-entity data-element="desc" data-text="Madison, WI | Computer Science" template="src: js/templates/type/type.template; type: handlebars" position="0 0 0.5"></a-entity>
+          <a-animation attribute="position" from="100 0 0" to="-1.25 -.5 .5" begin="500" dur="1000"></a-animation>
+        </a-entity>
+      </a-plane> -->
+        <!-- <a-sphere look-at="#player" position="0 1.25 -1" radius="1.25" color="#EF2D5E">
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+        <a-event name="mouseleave" scale="1 1 1"></a-event>
+      </a-sphere>
+      <a-cube look-at="#player" position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9">
+        <a-animation attribute="rotation" repeat="indefinite" to="0 360 0"></a-animation>
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+      </a-cube>
+      <a-cylinder look-at="#player" position="1 0.75 1" radius="0.25" height="1.5" color="#FFC65D">
+        <a-animation attribute="rotation" begin="click" repeat="indefinite" to="180 0 0"></a-animation>
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+        <a-event name="mouseleave" scale="1 1 1"></a-event>
+      </a-cylinder>
+      <a-plane look-at="#player" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
+        <!-- <a-sky color="#ECECEC"></a-sky>
+       -->
 
-    <a-plane id="learning" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-0.02 0 0.1">
-      <a-entity bmfont-text="text: Learning" position="-0.4 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+       <a-entity id="modal" ui-modal="trigger: modalEvent" visible="false">
+         <a-entity position="0 0 -2.45">
+           <a-plane width="3" height="3" color="#fff" position="0 0 0">
+             <a-entity data-element="h4" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 1 0.1"></a-entity>
+             <a-entity data-element="body" data-text="Software Engineering Intern" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 0 0.1"></a-entity>
+             <a-entity data-element="desc" data-text="Intuit" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 -.25 0.1"></a-entity>
+             <a-entity data-element="desc" data-text="Jan 2016 - May 2016 | Mountain View, CA" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 -.5 0.1" scale=".5 .5 .5"></a-entity>
+             <a-plane id="modal-close" width=".8" height=".8" color="red" position="1 1 0.1"></a-plane>
+           </a-plane>
+         </a-entity>
+        </a-entity>
 
-    <a-plane id="jobs" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="1.64 0 0.1">
-      <a-entity bmfont-text="text: Jobs" position="-0.3 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+        <a-entity id="model" position="0 0 -2">
+            <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000" easing="linear" repeat="infinite"></a-animation>
+            <a-collada-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5" src="#man"></a-collada-model>
+            <a-image src="#shadow" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
+        </a-entity>
 
-    <a-plane id="interests" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="3.3 0 0.1">
-      <a-entity bmfont-text="text: Interests" position="-0.5 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#6D6A75"></a-event>
-      <a-event name="mouseleave" color="#BFBDC1"></a-event>
-    </a-plane>
+        <a-entity rotation="0 40 0" data-element="h3" data-text="Jake Dexheimer" template="src: js/templates/type/type.template; type: handlebars" position="-3 2.1 -1"></a-entity>
 
-    <!-- SCENES aka entities -->
-    <a-entity id="homeScene">
-      <a-cube color="red"> </a-cube>
+        <a-image id="price" src="#price" width="7" height="3.5" scale="0.2 0.2 0.2">
+            <a-animation attribute="position" from="0 2.8 -6" to="2.25 2.8 -6" begin="1000" dur="1000"></a-animation>
+        </a-image>
+
+        <a-cylinder id="goggles" color="#101010" height="0.02" radius="0.8">
+            <a-animation attribute="rotation" from="-270 0 0" to="-90 0 0" dur="750" begin="1000" fill="both"></a-animation>
+            <a-animation attribute="position" from="8 0 -9" to="8 3.5 -9" dur="750" begin="1000" fill="both"></a-animation>
+            <a-image src="#goggles" width="2" height="1" rotation="90 0 0" position="0 -.05 0" scale=".4 .4 .4"></a-image>
+        </a-cylinder>
+
+        <a-entity rotation="0 40 0" data-element="h4" data-text="Software Engineer Intern at Intuit" template="src: js/templates/type/type.template; type: handlebars" position="-2.7 1.8 -1" scale=".4 .4 .4"></a-entity>
+        <a-entity rotation="0 40 0" data-element="desc" data-text="Madison, WI | Computer Science" template="src: js/templates/type/type.template; type: handlebars" position="-2.7 1.6 -1" scale=".4 .4 .4"></a-entity>
+
+        <a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 50 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 30 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 10 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 -10 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 -30 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-entity class="card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1" rotation="180 -50 0" material="side: double; color: #ddd" position="0 .7 1">
+            <a-entity rotation="180 5 0" data-element="body" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+          </a-entity>
+          <a-animation attribute="rotation" from="0 180 0" to="0 20 0" begin="750" dur="1000"></a-animation>
+        </a-entity>
+
+        <a-entity>
+            <a-cylinder position="0 0.5 0" radius="4" height="1.6" side="back" open-ended="true" color="#FFF"></a-cylinder>
+        </a-entity>
+
+        <a-sky color="#ECECEC"></a-sky>
+        <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+        <a-light type="ambient" color="#fff"></a-light>
+        <a-camera id="player" position="0 1.6 1">
+            <a-cursor color="#3BE287">
+        </a-camera>
+        <a-entity position="0 1.8 5">
+          <a-entity camera look-controls></a-entity>
     </a-entity>
-
-    <a-entity id="profileScene" visible="false">
-      <a-cube color="blue"> </a-cube>
-    </a-entity>
-
-    <a-entity id="myNetworkScene" visible="false">
-      <a-cube color="green"> </a-cube>
-    </a-entity>
-
-    <a-entity id="learningScene" visible="false">
-      <a-cube color="purple"> </a-cube>
-    </a-entity>
-
-    <a-entity id="jobsScene" visible="false">
-      <a-cube color="gray"> </a-cube>
-    </a-entity>
-
-    <a-entity id="interestsScene" visible="false">
-      <a-cube color="yellow"> </a-cube>
-    </a-entity>
-
-    <a-entity position="0 1.8 4">
-      <a-camera id="camera">
-        <a-cursor color="#4CC3D9"></a-cursor>
-      </a-camera>
-    </a-entity>
-  </a-scene>
-
-  <script type="text/javascript">
-
-  document.getElementById('home').addEventListener('click', function() { home();});
-  document.getElementById('profile').addEventListener('click', function() { profile();});
-  document.getElementById('myNetwork').addEventListener('click', function() { myNetwork();});
-  document.getElementById('learning').addEventListener('click', function() { learning();});
-  document.getElementById('jobs').addEventListener('click', function() { jobs();});
-  document.getElementById('interests').addEventListener('click', function() { interests();});
-
-  function home() {
-    document.getElementById('home').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'true')
-    document.getElementById('profileScene').setAttribute('visible', 'false')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
-    document.getElementById('learningScene').setAttribute('visible', 'false')
-    document.getElementById('jobsScene').setAttribute('visible', 'false')
-    document.getElementById('interestsScene').setAttribute('visible', 'false')
-  }
-  function profile() {
-    document.getElementById('profile').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'false')
-    document.getElementById('profileScene').setAttribute('visible', 'true')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
-    document.getElementById('learningScene').setAttribute('visible', 'false')
-    document.getElementById('jobsScene').setAttribute('visible', 'false')
-    document.getElementById('interestsScene').setAttribute('visible', 'false')
-  }
-  function myNetwork() {
-    document.getElementById('myNetwork').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'false')
-    document.getElementById('profileScene').setAttribute('visible', 'false')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'true')
-    document.getElementById('learningScene').setAttribute('visible', 'false')
-    document.getElementById('jobsScene').setAttribute('visible', 'false')
-    document.getElementById('interestsScene').setAttribute('visible', 'false')
-  }
-  function learning() {
-    document.getElementById('learning').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'false')
-    document.getElementById('profileScene').setAttribute('visible', 'false')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
-    document.getElementById('learningScene').setAttribute('visible', 'true')
-    document.getElementById('jobsScene').setAttribute('visible', 'false')
-    document.getElementById('interestsScene').setAttribute('visible', 'false')
-  }
-
-  function jobs() {
-    document.getElementById('jobs').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'false')
-    document.getElementById('profileScene').setAttribute('visible', 'false')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
-    document.getElementById('learningScene').setAttribute('visible', 'false')
-    document.getElementById('jobsScene').setAttribute('visible', 'true')
-    document.getElementById('interestsScene').setAttribute('visible', 'false')
-  }
-  function interests() {
-    document.getElementById('interests').setAttribute("color", "#6D6A75");
-
-    document.getElementById('homeScene').setAttribute('visible', 'false')
-    document.getElementById('profileScene').setAttribute('visible', 'false')
-    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
-    document.getElementById('learningScene').setAttribute('visible', 'false')
-    document.getElementById('jobsScene').setAttribute('visible', 'false')
-    document.getElementById('interestsScene').setAttribute('visible', 'true')
-  }
-  </script>
+    </a-scene>
 </body>
+<script>
+  (function(){
+    var cards = document.getElementsByClassName("card");
+    var modal = document.getElementById('modal');
+    var model = document.getElementById('model');
+    var modalClose = document.getElementById('modal-close');
+    var modalEvent = document.createEvent('Event');
+    var toggleModal = false;
+
+    modalEvent.initEvent('modalEvent', true, true);
+
+    for(var i = 0; i<cards.length; i++) {
+      addCardClickListener(cards[i]);
+    }
+
+    modalClose.addEventListener('click', function() {
+      modal.dispatchEvent(modalEvent);
+      model.setAttribute('visible', 'true');
+    });
+
+    function addCardClickListener(card) {
+      card.addEventListener('click', function (e) {
+        modal.dispatchEvent(modalEvent);
+        model.setAttribute('visible', 'false');
+        console.log('clicked card');
+      })
+    }
+
+
+  })();
+</script>
+
 </html>
