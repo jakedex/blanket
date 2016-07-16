@@ -66,10 +66,14 @@
        -->
 
        <a-entity id="modal" ui-modal="trigger: modalEvent" visible="false">
-         <a-entity position="0 1.5 2">
-           <a-plane width="3" height="1" color="red" position="0 -1.2 0"></a-plane>
-           <a-plane width="3" height="1" color="green" position="0 0 0"></a-plane>
-           <a-plane width="3" height="1" color="blue" position="0 1.2 0"></a-plane>
+         <a-entity position="0 0 -2.45">
+           <a-plane width="3" height="3" color="#fff" position="0 0 0">
+             <a-entity data-element="h4" data-text="Experience" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 1 0.1"></a-entity>
+             <a-entity data-element="body" data-text="Software Engineering Intern" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 0 0.1"></a-entity>
+             <a-entity data-element="desc" data-text="Intuit" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 -.25 0.1"></a-entity>
+             <a-entity data-element="desc" data-text="Jan 2016 - May 2016 | Mountain View, CA" template="src: js/templates/type/type.template; type: handlebars" position="-1.25 -.5 0.1" scale=".5 .5 .5"></a-entity>
+             <a-plane id="modal-close" width=".8" height=".8" color="red" position="1 1 0.1"></a-plane>
+           </a-plane>
          </a-entity>
         </a-entity>
 
@@ -135,19 +139,31 @@
   (function(){
     var cards = document.getElementsByClassName("card");
     var modal = document.getElementById('modal');
+    var model = document.getElementById('model');
+    var modalClose = document.getElementById('modal-close');
     var modalEvent = document.createEvent('Event');
+    var toggleModal = false;
+
     modalEvent.initEvent('modalEvent', true, true);
 
     for(var i = 0; i<cards.length; i++) {
       addCardClickListener(cards[i]);
     }
 
+    modalClose.addEventListener('click', function() {
+      modal.dispatchEvent(modalEvent);
+      model.setAttribute('visible', 'true');
+    });
+
     function addCardClickListener(card) {
-      card.addEventListener('click', function () {
+      card.addEventListener('click', function (e) {
         modal.dispatchEvent(modalEvent);
+        model.setAttribute('visible', 'false');
         console.log('clicked card');
       })
     }
+
+
   })();
 </script>
 
