@@ -5,14 +5,55 @@
     <title>Hello, World! • A-Frame</title>
     <meta name="description" content="Hello, World! • A-Frame">
     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-      <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-assets>
+        <script id="enemies" type="text/x-nunjucks-template">
+          <a-entity layout="type: circle; radius: 5" position="0 0.5 0">
+            <!-- Use A-Frames declarative animation system to have enemies march around us. -->
+            <a-animation attribute="rotation" dur="30000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
+
+            {% for x in range(num) %}
+              <a-sphere look-at="#player" radius=".125" color="#EF2D5E"></a-sphere>
+            {% endfor %}
+          </a-entity>
+
+
+        </script>
+      </a-assets>
+
+      <!-- <a-entity template="src: #enemies" data-num="10"></a-entity> -->
+      <a-plane look-at="#player" rotation="0 0 0" width="16" height="16" color="#7BC8A4" position="8 8 0">
+        <a-entity text="text: Title; size: .75" position="0 4 0.1"></a-entity>
+        <a-entity bmfont-text="text: H2: Hello world" scale="4.236 4.236 4.236" position="0 3 0.1"></a-entity>
+        <a-entity bmfont-text="text: H3: Hello world" scale="2.618 2.618 2.618" position="0 2 0.1"></a-entity>
+        <a-entity bmfont-text="text: h4: Hello world" scale="1.618 1.618 1.618" position="0 1 0.1"></a-entity>
+        <a-entity bmfont-text="text: body: Hello world" scale="1 1 1" position="0 0 0.1"></a-entity>
+      </a-plane>
+      <!-- <a-sphere look-at="#player" position="0 1.25 -1" radius="1.25" color="#EF2D5E">
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+        <a-event name="mouseleave" scale="1 1 1"></a-event>
+      </a-sphere>
+      <a-cube look-at="#player" position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9">
+        <a-animation attribute="rotation" repeat="indefinite" to="0 360 0"></a-animation>
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+      </a-cube>
+      <a-cylinder look-at="#player" position="1 0.75 1" radius="0.25" height="1.5" color="#FFC65D">
+        <a-animation attribute="rotation" begin="click" repeat="indefinite" to="180 0 0"></a-animation>
+        <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
+        <a-event name="mouseleave" scale="1 1 1"></a-event>
+      </a-cylinder>
+      <a-plane look-at="#player" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
       <a-sky color="#ECECEC"></a-sky>
+      <!-- <a-camera id="player" position="3.8 1.8 3.8"> -->
+      <a-camera id="player" position="-5 1.5 5">
+        <a-cursor color="#fff">
+      </a-camera>
     </a-scene>
   </body>
 </html>
