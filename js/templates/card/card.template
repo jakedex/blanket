@@ -1,0 +1,5 @@
+<a-mixin id="loop-card" geometry="primitive: cylinder; openEnded: true; thetaLength: 18; radius: 4.1"></a-mixin>
+
+<a-entity mixin="loop-card" rotation="180 {{ yRot }} 0" material="side: double; color: #ddd" position="0 .7 1">
+  <a-entity rotation="180 5 0" data-element="body" data-text="{{ text }}" template="src: js/templates/type/type.template; type: handlebars" position="0 -.4 3.5" scale=".4 .4 .4"></a-entity>
+</a-entity>
