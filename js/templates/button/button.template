@@ -1,0 +1,8 @@
+<!-- <a-mixin id="h1" text="size: .75"></a-mixin> -->
+<a-mixin id="button" material="color:#a5d8ff" ></a-mixin>
+
+<a-box mixin="{{ element }}" bmfont-text="text: {{ text }}" width="0.5" depth="0" height="0.5">
+	<a-animation attribute="scale" to="1 0.6 1" easing="ease-in-out" dur="1500" begin="hovered" repeat='0'></a-animation>
+	<a-event name="mouseleave" scale="1 1 1"></a-event>
+
+</a-box>
