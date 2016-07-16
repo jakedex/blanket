@@ -10,7 +10,10 @@
   <body>
 
     <a-scene>
-
+	
+	    <a-assets>
+	      <a-mixin id="buttonAni" attribute="scale" to="1 0.6 1" easing="ease-in-out" dur="1500" begin="hovered"></a-mixin>
+	    </a-assets>
       <a-entity position="0 1.8 4">
         <a-camera id="camera">
           <a-cursor color="#4CC3D9"></a-cursor>
@@ -30,11 +33,7 @@
 	var buttons = document.getElementsByClassName("button");
 	for(var i = 0; i<buttons.length; i++){
 		var buttonAnimation = document.createElement("a-animation");
-		buttonAnimation.setAttribute("attribute", "scale");
-		buttonAnimation.setAttribute("to", "1 0.6 1");
-		buttonAnimation.setAttribute("easing", "ease-in-out");
-		buttonAnimation.setAttribute("dur", "2000");
-		buttonAnimation.setAttribute("begin", "hovered");
+		buttonAnimation.setAttribute("mixin", "buttonAni");
 		buttons[i].appendChild(buttonAnimation);
 		var buttonEvent = document.createElement("a-event");
 		buttonEvent.setAttribute("name", "mouseleave");
