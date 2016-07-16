@@ -12,144 +12,149 @@
 </head>
 <body>
   <a-scene>
-    <!-- <a-assets>
-      a-mixin
-    </a-assets> -->
     <a-sky color="#ECECEC"></a-sky>
     <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
     <a-light type="ambient" color="#fff"></a-light>
-
-    <a-plane color="#CCC" height="1" width="10" position="-1 -1 0">
-
-    </a-plane>
-
-
-    <a-plane scale="1 1 1" height="1" width="1.66" position="-5 0 0.1">
+    <!--  NAV LINKS -->
+    <a-plane id="home" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-5 0 0.1">
       <a-entity bmfont-text="text: Home" position="0 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-    <a-plane scale="1 1 1" height="1" width="1.66" position="-3.34 0 0.1">
+    <a-plane id="profile" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-3.34 0 0.1">
       <a-entity bmfont-text="text: Profile" position="-0.2 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-    <a-plane scale="1 1 1" height="1" width="1.66" position="-1.68 0 0.1">
+    <a-plane id="myNetwork" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-1.68 0 0.1">
       <a-entity bmfont-text="text: My Network" position="-0.4 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-    <a-plane scale="1 1 1" height="1" width="1.66" position="-0.02 0 0.1">
+    <a-plane id="learning" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="-0.02 0 0.1">
       <a-entity bmfont-text="text: Learning" position="-0.4 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-    <a-plane scale="1 1 1" height="1" width="1.66" position="1.64 0 0.1">
+    <a-plane id="jobs" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="1.64 0 0.1">
       <a-entity bmfont-text="text: Jobs" position="-0.3 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-    <a-plane scale="1 1 1" height="1" width="1.66" position="3.3 0 0.1">
+    <a-plane id="interests" scale="1 1 1" color="#BFBDC1" height="1" width="1.66" position="3.3 0 0.1">
       <a-entity bmfont-text="text: Interests" position="-0.5 0 0.1"></a-entity>
-      <a-event name="mouseenter" color="#00FF00"></a-event>
-      <a-event name="mouseleave" color="#FF0000"></a-event>
+      <a-event name="mouseenter" color="#6D6A75"></a-event>
+      <a-event name="mouseleave" color="#BFBDC1"></a-event>
     </a-plane>
 
-      <a-entity position="0 1.8 4">
-        <a-camera id="camera">
-          <a-cursor color="#4CC3D9"></a-cursor>
-        </a-camera>
-      </a-entity>
+    <!-- SCENES aka entities -->
 
-      <a-box id="orange-cube" position="0 3.5 -2" rotation="30 30 0" width="2" depth="2"
-             height="2" color="#F16745" roughness="0.8">
-        <a-event name="mouseenter" scale="3 1 1" color="#FFC65D"></a-event>
-        <a-event name="mouseleave" scale="1 1 1" color="#F16745"></a-event>
-      </a-box>
+    <a-entity id="homeScene">
+      <a-cube color="red"> </a-cube>
+    </a-entity>
 
-<!--
-      <a-entity id="home">
-        <a-cube color="blue" onclick="home()"> </a-cube>
-      </a-entity>
+    <a-entity id="profileScene" visible="false">
+      <a-cube color="blue"> </a-cube>
+    </a-entity>
 
-      <a-entity id="profile" visible="false">
-        <a-cube color="green" onclick="profile()"> </a-cube>
-      </a-entity>
+    <a-entity id="myNetworkScene" visible="false">
+      <a-cube color="green"> </a-cube>
+    </a-entity>
 
-      <a-entity id="myNetwork" visible="false">
-        <a-cube color="red" onclick="myNetwork()"> </a-cube>
-      </a-entity>
+    <a-entity id="learningScene" visible="false">
+      <a-cube color="purple"> </a-cube>
+    </a-entity>
 
-      <a-entity id="learning" visible="false">
-        <a-cube color="gray" onclick="learning()"> </a-cube>
-      </a-entity>
+    <a-entity id="jobsScene" visible="false">
+      <a-cube color="gray"> </a-cube>
+    </a-entity>
 
-      <a-entity id="jobs" visible="false">
-        <a-cube color="cyan" onclick="jobs()"> </a-cube>
-      </a-entity>
+    <a-entity id="interestsScene" visible="false">
+      <a-cube color="yellow"> </a-cube>
+    </a-entity>
 
-      <a-entity id="interest" visible="false">
-        <a-cube color="purple" onclick="interest()"> </a-cube>
-      </a-entity> -->
-
-
+    <a-entity position="0 1.8 4">
+      <a-camera id="camera">
+        <a-cursor color="#4CC3D9"></a-cursor>
+      </a-camera>
+    </a-entity>
   </a-scene>
 
   <script type="text/javascript">
-  // function home() {
-  //   document.getElementById('home').setAttribute('visible', 'true')
-  //   document.getElementById('profile').setAttribute('visible', 'false')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
-  //   document.getElementById('learning').setAttribute('visible', 'false')
-  //   document.getElementById('jobs').setAttribute('visible', 'false')
-  //   document.getElementById('interest').setAttribute('visible', 'false')
-  // }
-  // function profile() {
-  //   document.getElementById('home').setAttribute('visible', 'false')
-  //   document.getElementById('profile').setAttribute('visible', 'true')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
-  //   document.getElementById('learning').setAttribute('visible', 'false')
-  //   document.getElementById('jobs').setAttribute('visible', 'false')
-  //   document.getElementById('interest').setAttribute('visible', 'false')
-  // }
-  // function myNetwork() {
-  //   document.getElementById('home').setAttribute('visible', 'false')
-  //   document.getElementById('profile').setAttribute('visible', 'false')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'true')
-  //   document.getElementById('learning').setAttribute('visible', 'false')
-  //   document.getElementById('jobs').setAttribute('visible', 'false')
-  //   document.getElementById('interest').setAttribute('visible', 'false')
-  // }
-  // function learning() {
-  //   document.getElementById('home').setAttribute('visible', 'false')
-  //   document.getElementById('profile').setAttribute('visible', 'false')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
-  //   document.getElementById('learning').setAttribute('visible', 'true')
-  //   document.getElementById('jobs').setAttribute('visible', 'false')
-  //   document.getElementById('interest').setAttribute('visible', 'false')
-  // }
-  //
-  // function jobs() {
-  //   document.getElementById('home').setAttribute('visible', 'false')
-  //   document.getElementById('profile').setAttribute('visible', 'false')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
-  //   document.getElementById('learning').setAttribute('visible', 'false')
-  //   document.getElementById('jobs').setAttribute('visible', 'true')
-  //   document.getElementById('interest').setAttribute('visible', 'false')
-  // }
-  // function interest() {
-  //   document.getElementById('home').setAttribute('visible', 'false')
-  //   document.getElementById('profile').setAttribute('visible', 'false')
-  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
-  //   document.getElementById('learning').setAttribute('visible', 'false')
-  //   document.getElementById('jobs').setAttribute('visible', 'false')
-  //   document.getElementById('interest').setAttribute('visible', 'true')
-  // }
+
+  document.getElementById('home').addEventListener('click', function() { home();});
+  document.getElementById('profile').addEventListener('click', function() { profile();});
+  document.getElementById('myNetwork').addEventListener('click', function() { myNetwork();});
+  document.getElementById('learning').addEventListener('click', function() { learning();});
+  document.getElementById('jobs').addEventListener('click', function() { jobs();});
+  document.getElementById('interests').addEventListener('click', function() { interests();});
+
+  function home() {
+    document.getElementById('home').setAttribute("color", "#6D6A75");
+
+    document.getElementById('homeScene').setAttribute('visible', 'true')
+    document.getElementById('profileScene').setAttribute('visible', 'false')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
+    document.getElementById('learningScene').setAttribute('visible', 'false')
+    document.getElementById('jobsScene').setAttribute('visible', 'false')
+    document.getElementById('interestsScene').setAttribute('visible', 'false')
+  }
+  function profile() {
+    document.getElementById('profile').setAttribute("color", "#6D6A75");
+
+    document.getElementById('homeScene').setAttribute('visible', 'false')
+    document.getElementById('profileScene').setAttribute('visible', 'true')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
+    document.getElementById('learningScene').setAttribute('visible', 'false')
+    document.getElementById('jobsScene').setAttribute('visible', 'false')
+    document.getElementById('interestsScene').setAttribute('visible', 'false')
+  }
+  function myNetwork() {
+    document.getElementById('myNetwork').setAttribute("color", "#6D6A75");
+
+    document.getElementById('homeScene').setAttribute('visible', 'false')
+    document.getElementById('profileScene').setAttribute('visible', 'false')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'true')
+    document.getElementById('learningScene').setAttribute('visible', 'false')
+    document.getElementById('jobsScene').setAttribute('visible', 'false')
+    document.getElementById('interestsScene').setAttribute('visible', 'false')
+  }
+  function learning() {
+    document.getElementById('learning').setAttribute("color", "#6D6A75");
+
+    document.getElementById('homeScene').setAttribute('visible', 'false')
+    document.getElementById('profileScene').setAttribute('visible', 'false')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
+    document.getElementById('learningScene').setAttribute('visible', 'true')
+    document.getElementById('jobsScene').setAttribute('visible', 'false')
+    document.getElementById('interestsScene').setAttribute('visible', 'false')
+  }
+
+  function jobs() {
+    document.getElementById('jobs').setAttribute("color", "#6D6A75");
+
+    document.getElementById('homeScene').setAttribute('visible', 'false')
+    document.getElementById('profileScene').setAttribute('visible', 'false')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
+    document.getElementById('learningScene').setAttribute('visible', 'false')
+    document.getElementById('jobsScene').setAttribute('visible', 'true')
+    document.getElementById('interestsScene').setAttribute('visible', 'false')
+  }
+  function interests() {
+    document.getElementById('interests').setAttribute("color", "#6D6A75");
+    
+    document.getElementById('homeScene').setAttribute('visible', 'false')
+    document.getElementById('profileScene').setAttribute('visible', 'false')
+    document.getElementById('myNetworkScene').setAttribute('visible', 'false')
+    document.getElementById('learningScene').setAttribute('visible', 'false')
+    document.getElementById('jobsScene').setAttribute('visible', 'false')
+    document.getElementById('interestsScene').setAttribute('visible', 'true')
+  }
   </script>
 </body>
 </html>
