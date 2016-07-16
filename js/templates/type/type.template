@@ -1,0 +1,8 @@
+<!-- <a-mixin id="h1" text="size: .75"></a-mixin> -->
+<a-mixin id="h1" scale="6.854 6.854 6.854"></a-mixin>
+<a-mixin id="h2" scale="4.236 4.236 4.236"></a-mixin>
+<a-mixin id="h3"  scale="2.618 2.618 2.618"></a-mixin>
+<a-mixin id="h4" scale="1.618 1.618 1.618"></a-mixin>
+<a-mixin id="body" scale="1 1 1"></a-mixin>
+
+<a-entity mixin="{{ element }}" bmfont-text="text: {{ text }}"></a-entity>

@@ -15,25 +15,27 @@
       <a-assets>
         <script id="enemies" type="text/x-nunjucks-template">
           <a-entity layout="type: circle; radius: 5" position="0 0.5 0">
-            <!-- Use A-Frames declarative animation system to have enemies march around us. -->
             <a-animation attribute="rotation" dur="30000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 
             {% for x in range(num) %}
               <a-sphere look-at="#player" radius=".125" color="#EF2D5E"></a-sphere>
             {% endfor %}
           </a-entity>
-
-
         </script>
+        <!-- <a-mixin id="h1" text="size: .75"></a-mixin>
+        <a-mixin id="h2" scale="4.236 4.236 4.236"></a-mixin>
+        <a-mixin id="h3"  scale="2.618 2.618 2.618"></a-mixin>
+        <a-mixin id="h4" scale="1.618 1.618 1.618"></a-mixin>
+        <a-mixin id="body" scale="1 1 1"></a-mixin> -->
       </a-assets>
 
       <!-- <a-entity template="src: #enemies" data-num="10"></a-entity> -->
       <a-plane look-at="#player" rotation="0 0 0" width="16" height="16" color="#7BC8A4" position="8 8 0">
-        <a-entity text="text: Title; size: .75" position="0 4 0.1"></a-entity>
-        <a-entity bmfont-text="text: H2: Hello world" scale="4.236 4.236 4.236" position="0 3 0.1"></a-entity>
-        <a-entity bmfont-text="text: H3: Hello world" scale="2.618 2.618 2.618" position="0 2 0.1"></a-entity>
-        <a-entity bmfont-text="text: h4: Hello world" scale="1.618 1.618 1.618" position="0 1 0.1"></a-entity>
-        <a-entity bmfont-text="text: body: Hello world" scale="1 1 1" position="0 0 0.1"></a-entity>
+        <a-entity data-element="h1" data-text="Hello world" template="src: js/templates/type/type.template; type: handlebars" position="0 4 0.1"></a-entity>
+        <a-entity data-element="h2" data-text="Hello world" template="src: js/templates/type/type.template; type: handlebars" position="0 3 0.1"></a-entity>
+        <a-entity data-element="h3" data-text="Hello world" template="src: js/templates/type/type.template; type: handlebars" position="0 2 0.1"></a-entity>
+        <a-entity data-element="h4" data-text="Hello world" template="src: js/templates/type/type.template; type: handlebars" position="0 1 0.1"></a-entity>
+        <a-entity data-element="body" data-text="Hello world" template="src: js/templates/type/type.template; type: handlebars" position="0 0 0.1"></a-entity>
       </a-plane>
       <!-- <a-sphere look-at="#player" position="0 1.25 -1" radius="1.25" color="#EF2D5E">
         <a-event name="mouseenter" scale="1.25 1.25 1.25"></a-event>
