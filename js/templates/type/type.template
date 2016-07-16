@@ -4,5 +4,6 @@
 <a-mixin id="h3"  scale="2.618 2.618 2.618"></a-mixin>
 <a-mixin id="h4" scale="1.618 1.618 1.618"></a-mixin>
 <a-mixin id="body" scale="1 1 1"></a-mixin>
+<a-mixin id="desc" scale="1 1 1" bmfont-text="color: #777"></a-mixin>
 
 <a-entity mixin="{{ element }}" bmfont-text="text: {{ text }}"></a-entity>
