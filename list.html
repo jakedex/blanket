@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+
+  </head>
+  <body>
+
+    <a-scene>
+    <a-assets>
+        <a-mixin id="dopdown" geometry="depth: .05; height: 1; width: 6" material="shader: flat; opacity:0.4" pivot="0 0.5 0" position="0 1 0" color="#fff" ></a-mixin>
+      <a-mixin id="unhinge" attribute="rotation" from="-180 0 0" to="0 0 0" dur="1000" repeat="0"></a-mixin>
+    </a-assets>
+      <a-entity position="0 1.8 4">
+        <a-camera id="camera">
+          <a-cursor color="#4CC3D9"></a-cursor>
+        </a-camera>
+      </a-entity>
+	  		
+      <!-- Series of nested boards that unfold one by one. -->
+      <a-entity id='nav' position="0 5 -4" scale="1,1,1">
+      </a-entity>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+	<script>
+	var navs = ['sample1','sample2','sample3','sample4'];
+	var navContainer = document.getElementById('nav');
+	var wait = function(milisec){
+		window.clearTimeout(window.setTimeout(function(){
+			while(true){}
+		},milisec)
+		);
+	}
+	console.log(navContainer);
+	//navContainer.addEventListener('mouseenter', addDropdown);
+	//navContainer.addEventListener('mouseleave', destroyDropdown);
+	var addDropdown = function(){
+		var pointer = navContainer;
+		var startimer = 250;
+		var firstAni = null;
+		for(var i = 0; i<navs.length; i++){
+			if(i != 0){
+			var boxAni = document.createElement("a-animation");
+			boxAni.setAttribute("mixin", "unhinge");
+			boxAni.setAttribute("begin", 'ce');
+			if(i === navs.length-1){
+			boxAni.addEventListener('animationend',function(){
+				console.log('test ce');
+				//wait(250);
+				this.nextSibling.emit('ce');
+			});
+			}
+			if(i ===1){
+				boxAni.setAttribute("begin", 'hovered');
+			}
+			pointer.appendChild(boxAni);
+			}
+			var newBox = document.createElement("a-box");
+			newBox.setAttribute("mixin", "dopdown");
+			pointer.appendChild(newBox);
+			startimer += 250;
+			pointer = newBox;
+		}
+		// navContainer.addEventListener('mouseover', function(){
+		// 	console.log('test nav ce');
+		// 	//wait(250);
+		// 	document.getElementById('nav').firstChild.emit('ce');
+		// })
+	}
+	addDropdown();
+	var destroyDropdown = function(){
+		console.log("mouseleft");
+		while (navContainer.firstChild) {
+		    navContainer.removeChild(navContainer.firstChild);
+		}
+	}
+	
+	
+	</script>
+  </body>
+</html>
