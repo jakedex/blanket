@@ -1,18 +1,155 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, World! • A-Frame</title>
-    <meta name="description" content="Hello, World! • A-Frame">
-    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-      <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Hello, World! • A-Frame</title>
+  <meta name="description" content="Hello, World! • A-Frame">
+  <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
+  <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- <a-assets>
+      a-mixin
+    </a-assets> -->
+    <a-sky color="#ECECEC"></a-sky>
+    <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+    <a-light type="ambient" color="#fff"></a-light>
+
+    <a-plane color="#CCC" height="1" width="10" position="-1 -1 0">
+
+    </a-plane>
+
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="-5 0 0.1">
+      <a-entity bmfont-text="text: Home" position="0 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="-3.34 0 0.1">
+      <a-entity bmfont-text="text: Profile" position="-0.2 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="-1.68 0 0.1">
+      <a-entity bmfont-text="text: My Network" position="-0.4 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="-0.02 0 0.1">
+      <a-entity bmfont-text="text: Learning" position="-0.4 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="1.64 0 0.1">
+      <a-entity bmfont-text="text: Jobs" position="-0.3 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+    <a-plane scale="1 1 1" height="1" width="1.66" position="3.3 0 0.1">
+      <a-entity bmfont-text="text: Interests" position="-0.5 0 0.1"></a-entity>
+      <a-event name="mouseenter" color="#00FF00"></a-event>
+      <a-event name="mouseleave" color="#FF0000"></a-event>
+    </a-plane>
+
+      <a-entity position="0 1.8 4">
+        <a-camera id="camera">
+          <a-cursor color="#4CC3D9"></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <a-box id="orange-cube" position="0 3.5 -2" rotation="30 30 0" width="2" depth="2"
+             height="2" color="#F16745" roughness="0.8">
+        <a-event name="mouseenter" scale="3 1 1" color="#FFC65D"></a-event>
+        <a-event name="mouseleave" scale="1 1 1" color="#F16745"></a-event>
+      </a-box>
+
+<!--
+      <a-entity id="home">
+        <a-cube color="blue" onclick="home()"> </a-cube>
+      </a-entity>
+
+      <a-entity id="profile" visible="false">
+        <a-cube color="green" onclick="profile()"> </a-cube>
+      </a-entity>
+
+      <a-entity id="myNetwork" visible="false">
+        <a-cube color="red" onclick="myNetwork()"> </a-cube>
+      </a-entity>
+
+      <a-entity id="learning" visible="false">
+        <a-cube color="gray" onclick="learning()"> </a-cube>
+      </a-entity>
+
+      <a-entity id="jobs" visible="false">
+        <a-cube color="cyan" onclick="jobs()"> </a-cube>
+      </a-entity>
+
+      <a-entity id="interest" visible="false">
+        <a-cube color="purple" onclick="interest()"> </a-cube>
+      </a-entity> -->
+
+
+  </a-scene>
+
+  <script type="text/javascript">
+  // function home() {
+  //   document.getElementById('home').setAttribute('visible', 'true')
+  //   document.getElementById('profile').setAttribute('visible', 'false')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
+  //   document.getElementById('learning').setAttribute('visible', 'false')
+  //   document.getElementById('jobs').setAttribute('visible', 'false')
+  //   document.getElementById('interest').setAttribute('visible', 'false')
+  // }
+  // function profile() {
+  //   document.getElementById('home').setAttribute('visible', 'false')
+  //   document.getElementById('profile').setAttribute('visible', 'true')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
+  //   document.getElementById('learning').setAttribute('visible', 'false')
+  //   document.getElementById('jobs').setAttribute('visible', 'false')
+  //   document.getElementById('interest').setAttribute('visible', 'false')
+  // }
+  // function myNetwork() {
+  //   document.getElementById('home').setAttribute('visible', 'false')
+  //   document.getElementById('profile').setAttribute('visible', 'false')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'true')
+  //   document.getElementById('learning').setAttribute('visible', 'false')
+  //   document.getElementById('jobs').setAttribute('visible', 'false')
+  //   document.getElementById('interest').setAttribute('visible', 'false')
+  // }
+  // function learning() {
+  //   document.getElementById('home').setAttribute('visible', 'false')
+  //   document.getElementById('profile').setAttribute('visible', 'false')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
+  //   document.getElementById('learning').setAttribute('visible', 'true')
+  //   document.getElementById('jobs').setAttribute('visible', 'false')
+  //   document.getElementById('interest').setAttribute('visible', 'false')
+  // }
+  //
+  // function jobs() {
+  //   document.getElementById('home').setAttribute('visible', 'false')
+  //   document.getElementById('profile').setAttribute('visible', 'false')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
+  //   document.getElementById('learning').setAttribute('visible', 'false')
+  //   document.getElementById('jobs').setAttribute('visible', 'true')
+  //   document.getElementById('interest').setAttribute('visible', 'false')
+  // }
+  // function interest() {
+  //   document.getElementById('home').setAttribute('visible', 'false')
+  //   document.getElementById('profile').setAttribute('visible', 'false')
+  //   document.getElementById('myNetwork').setAttribute('visible', 'false')
+  //   document.getElementById('learning').setAttribute('visible', 'false')
+  //   document.getElementById('jobs').setAttribute('visible', 'false')
+  //   document.getElementById('interest').setAttribute('visible', 'true')
+  // }
+  </script>
+</body>
 </html>
